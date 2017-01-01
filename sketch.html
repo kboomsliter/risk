@@ -1,0 +1,74 @@
+<h1>RISK</h1>
+<p>
+After playing RISK this Christmas with the kids I thought it'd be fun to
+explore making a web-based version as a coding challenge.  Considering I barely
+know Python but want to learn, and knowing nothing about web UI, this could be
+a great learning experience.
+</p>
+<h2>Game design</h2>
+<p>
+Every action in the game is public with all players.  It seems that server side
+will be needed to commit most actions.  Troop placement can be worked out client
+side but a commit/submit action will make it so on the server side.  Dice roll is 
+all server once the attacker and defender commit the number of troops to battle.
+</p>
+<h2>Game Initialize</h2>
+<ul>
+	<li>Number of players - determines numbers of troops</li>
+	<li>Determine play order</li>
+	<ul>
+		<li>Roll one die, highest goes first</li>
+		<li>Determine how to order remaining players (more die rolls to break ties?)</li>
+		<li>Assign troops color</li>
+	</ul>
+	<li>Game mode</li>
+	<ul>
+		<li>Classic RISK (build this first, probably)</li>
+		<li>Secret Mission</li>
+		<li>RISK for 2 Players</li>
+		<li>Capital RISK</li>
+	</ul>
+</ul>
+<h2>Game Setup</h2>
+<ul>
+	<li>Classic RISK</li>
+	<ul>
+		<li>3 players - 35 Infantry each</li>
+		<li>4 players - 30 Infantry each</li>
+		<li>5 players - 25 Infantry each</li>
+	</ul>
+	<li>Players claim territories with 1 Infantry in turn until all territories are claimed</li>
+</ul>
+<h2>Classes</h2>
+<ul>
+	<li>Continent</li>
+	<ul>
+		<li>Name</li>
+		<li>Color</li>
+		<li>Territories (array of territory objects)</li>
+		<li>Troop bonus (integer)</li>
+	</ul>
+	<li>Territory</li>
+	<ul>
+		<li>Name</li>
+		<li>Continent (member of)</li>
+		<li>Color (inherit from Continent)</li>
+		<li>Borders with (relationship to other territories)</li>
+		<li>Occupied Troop instance (gets color)</li>
+		<li>Occupied Troop count</li>
+		<li>Attacking Troop instance</li>
+		<li>Attacking Troop count</li>
+		<li>Defending Troop count</li>
+	</ul>
+	<li>Troops</li>
+	<ul>
+		<li>Type</li>
+		<li>Color (relationship to Player)</li>
+		<li>Troop count</li>
+	</ul>
+	<li>Player</li>
+	<ul>
+		<li>Name</li>
+		<li>Troop color (relationship to Troop class)</li>
+		<li>Play Order (integer) determined by setup rolls</li>
+	</ul>
